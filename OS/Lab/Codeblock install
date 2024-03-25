@@ -1,0 +1,7 @@
+sudo apt-get update
+sudo apt install g++
+sudo add-apt-repository universe
+sudo apt-get update
+sudo apt install codeblocks
+sudo apt install codeblocks-contrib
+

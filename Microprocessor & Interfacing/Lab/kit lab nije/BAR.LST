@@ -1,0 +1,62 @@
+Turbo Assembler  Version 1.0        06/26/24 12:53:10         Page 1
+LED.ASM
+
+      1 0000                                      CODE SEGMENT
+      2                               ASSUME CS:CODE,DS:CODE,ES:CODE,SS:CODE
+      3
+      4       = 001F                 PPIC_C EQU 1FH
+      5       = 001D                 PPIC EQU 1DH
+      6       = 001B                 PPIB EQU 1BH
+      7       = 0019                 PPIA EQU 19H
+      8
+      9                               ORG 1000H
+     10 1000  B0 80                   MOV AL,10000000B
+     11 1002  E6 1F                   OUT PPIC_C,AL
+     12
+     13 1004  B0 05                  L1: MOV AL,00000101B
+     14 1006  E6 1B                   OUT PPIB,AL
+     15 1008  E8 0009                 CALL DELAY
+     16 100B  B0 00                   MOV AL,00000000B
+     17 100D  E6 1B                   OUT PPIB,AL
+     18 100F  E8 0002                 CALL DELAY
+     19 1012  EB F0                   JMP L1
+     20
+     21
+     22 1014  B9 FFFF                DELAY: MOV CX,1111111111111111B
+     23 1017  90                     TIMER1: NOP
+     24 1018  90                     NOP
+     25 1019  90                     NOP
+     26 101A  90                     NOP
+     27 101B  E2 FA                  LOOP TIMER1
+     28 101D  C3                     RET
+     29
+     30
+     31
+     32 101E                         CODE ENDS
+     33                              END
+Turbo Assembler  Version 1.0        06/26/24 12:53:10         Page 2
+Symbol Table
+
+
+Symbol Name                       Type   Value
+
+??DATE                            Text   "06/26/24"
+??FILENAME                        Text   "LED     "
+??TIME                            Text   "12:53:10"
+??VERSION                         Number 0100
+@CPU                              Text   0101H
+@CURSEG                           Text   CODE
+@FILENAME                         Text   LED
+@WORDSIZE                         Text   2
+DELAY                             Near   CODE:1014
+L1                                Near   CODE:1004
+PPIA                              Number 0019
+PPIB                              Number 001B
+PPIC                              Number 001D
+PPIC_C                            Number 001F
+TIMER1                            Near   CODE:1017
+
+Groups & Segments                 Bit Size Align  Combine Class
+
+CODE                              16  101E Para   none
+
